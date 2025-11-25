@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const PORT = 3000
+const postsRouter = require('./Routes/posts')
 
 
 
@@ -57,30 +58,7 @@ app.get('/', (req, res) => {
     res.send('welcome in my blog')
 })
 
-app.get('/bacheca', (req, res) => {
-    res.send(`your bacheca with all posts`)
-})
-
-app.get('/bacheca/:id', (req, res) => {
-    res.send(`your searching a single post with id: ${req.params.id}`)
-})
-
-app.post('/bacheca', (req, res) => {
-    res.send(`youre adding a new object in all posts`)
-})
-
-app.put('/bacheca/:id', (req, res) => {
-    res.send(`your trying completly modify a single post with id: ${req.params.id}`)
-})
-
-app.patch('/bacheca/:id', (req, res) => {
-    res.send(`your trying modify a part of a single post with id: ${req.params.id}`)
-})
-
-app.delete('/bacheca/:id', (req, res) => {
-    res.send(`your trying delete a single post with id: ${req.params.id}`)
-})
-
+app.use('/posts', postsRouter)
 
 
 app.listen(PORT, () => {
